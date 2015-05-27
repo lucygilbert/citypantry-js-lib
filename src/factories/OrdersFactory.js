@@ -34,8 +34,7 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService) {
 
                     const now = new Date();
 
-                    return orders.filter((order) => order.statusText !== 'not_placed')
-                        .filter((order) => getDateObject(order.requestedDeliveryDate) >= now)
+                    return orders.filter((order) => getDateObject(order.requestedDeliveryDate) >= now)
                         .sort((a, b) => getDateObject(a.requestedDeliveryDate) - getDateObject(b.requestedDeliveryDate))
                         .shift();
                 });
