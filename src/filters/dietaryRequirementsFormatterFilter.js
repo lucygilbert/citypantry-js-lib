@@ -18,8 +18,8 @@ angular.module('cpLib').filter('dietaryRequirementsFormatter', function($sce) {
         });
 
         if (dietaryRequirements.customInstructions) {
-            html += 'Custom instructions:<br />'
-                + dietaryRequirements.customInstructions.replace(/\n+$/, '').replace(/\n/g, '<br />');
+            html += 'Custom instructions:<br />' +
+                dietaryRequirements.customInstructions.replace(/\n+$/, '').replace(/\n/g, '<br />');
         }
 
         html = html.replace(/(<br \/>)+$/, '');
