@@ -2,6 +2,8 @@ angular.module('cpLib').factory('MealPlanFactory', function (ApiService) {
     return {
         getCustomers: () => ApiService.get(`/meal-plan/customers`),
 
+        getCustomerMealPlanRequirements: (id) => ApiService.get(`/meal-plan/customers/${id}/requirements`),
+
         setCustomerMealPlanRequirements: (id, mealPlanRequirements) => ApiService.post(`/meal-plan/customers/${id}/requirements`, mealPlanRequirements),
 
         generateMealPlan: (id, startDate) => ApiService.post(`/meal-plan/customers/${id}/generate`, {startDate: startDate}),
