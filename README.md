@@ -21,3 +21,16 @@ Distributing
 Update the version in `package.json`, and run:
 
     npm publish
+
+Using in another project
+------------------------
+
+To install:
+
+    npm install citypantry-js-lib
+
+The installed directory, in `node_modules/citypantry-js-lib`, will contain three main files:
+
+    dist/lib-es5-with-browser-polyfill.js
+    dist/lib-es5-without-browser-polyfill.js
+    dist/lib-es6.js

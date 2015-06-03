@@ -16,7 +16,10 @@ module.exports = function (grunt) {
                         'src/filters/*.js',
                         'src/services/*.js',
                     ],
-                    'dist/lib-es5.js': [
+                    'dist/lib-es5-without-browser-polyfill.js': [
+                        'dist/lib-es6.js',
+                    ],
+                    'dist/lib-es5-with-browser-polyfill.js': [
                         'node_modules/grunt-6to5/node_modules/6to5/browser-polyfill.js',
                         'dist/lib-es6.js',
                     ],
@@ -27,7 +30,8 @@ module.exports = function (grunt) {
         '6to5': {
             js: {
                 files: {
-                    'dist/lib-es5.js': 'dist/lib-es5.js'
+                    'dist/lib-es5-without-browser-polyfill.js': 'dist/lib-es5-without-browser-polyfill.js',
+                    'dist/lib-es5-with-browser-polyfill.js': 'dist/lib-es5-with-browser-polyfill.js',
                 }
             }
         },

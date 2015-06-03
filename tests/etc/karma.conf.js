@@ -18,7 +18,7 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'tests/etc/mock-cpLibIntegration.js',
-      'dist/lib-es5.js',
+      'dist/lib-es5-without-browser-polyfill.js',
       'tests/unit/**/*.js'
     ],
 
