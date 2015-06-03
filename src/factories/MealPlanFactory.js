@@ -14,7 +14,7 @@ angular.module('cpLib').factory('MealPlanFactory', function (ApiService) {
 
         getCustomerMealPlan: (customerId, mealPlanId) => ApiService.get(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}`),
 
-        checkProposedOrdersAvailability: (customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/availabilty`),
+        checkProposedOrdersAvailability: (customerId, mealPlanId, proposedOrders) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/availability`, {checks: proposedOrders}),
 
         setPackagesOnDates: (orders, customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/set-package-dates`, orders),
 
