@@ -16,14 +16,19 @@ angular.module('cpLib').factory('MealPlanFactory', function (ApiService) {
 
         checkProposedOrdersAvailability: (customerId, mealPlanId, proposedOrders) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/availability`, {checks: proposedOrders}),
 
-        setPackagesOnDates: (orders, customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/set-package-dates`, orders),
+        setPackagesOnDates: (customerId, mealPlanId, orders) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/set-package-dates`, orders),
 
-        replaceWithUnusedAlternativePackage: (date, customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/replace-with-unused-alternative-package`, date),
+        /**
+         * @param  {String} customerId
+         * @param  {String} mealPlanId
+         * @param  {String} date       An ISO-8601 string.
+         */
+        replaceWithUnusedAlternativePackage: (customerId, mealPlanId, date) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/replace-with-unused-alternative-package`, date),
 
         sendToCustomer: (customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/send-to-customer`),
 
         confirmProposedOrders: (customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/confirm-proposed-orders`),
 
-        editProposedOrder: (orderDetails, customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/edit-proposed-order`, orderDetails)
+        editProposedOrder: (customerId, mealPlanId, orderDetails) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/edit-proposed-order`, orderDetails)
     };
 });
