@@ -8,6 +8,14 @@ angular.module('cpLib').factory('PackagesFactory',
 
         getPackageByHumanId: humanId => ApiService.get(`/packages/${humanId}`),
 
+        /**
+         * Resolves to the name of a package.
+         *
+         * @param {String|Number} id Either the package ID or the package human ID.
+         */
+        getPackageName: (id) => ApiService.get(`/packages/${id}`)
+            .then(response => response.data.name),
+
         createPackage: packageDetails => ApiService.post(`/packages`, packageDetails),
 
         updatePackage: (id, updatedPackage) => ApiService.put(`/packages/${id}`, updatedPackage),
