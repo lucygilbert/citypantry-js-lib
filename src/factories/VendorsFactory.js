@@ -48,6 +48,8 @@ angular.module('cpLib').factory('VendorsFactory', function(ApiService, $q) {
 
         getAllSupplierAgreements: () => ApiService.get(`/supplier-agreements`),
 
-        acceptSupplierAgreement: (id) => ApiService.put(`/supplier-agreement/${id}/accept`)
+        acceptSupplierAgreement: (id) => ApiService.put(`/supplier-agreement/${id}/accept`),
+
+        registerNewVendor: (registrationDetails) => ApiService.post(`/vendors/signup/register`, registrationDetails)
     };
 });
