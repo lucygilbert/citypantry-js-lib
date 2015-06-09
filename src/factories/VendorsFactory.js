@@ -44,6 +44,10 @@ angular.module('cpLib').factory('VendorsFactory', function(ApiService, $q) {
          */
         createHoliday: (start, end) => ApiService.post(`/holidays`, {start: start, end: end}),
 
+        getHoliday: (id) => ApiService.get(`/holidays/${id}`),
+
+        updateHoliday: (id, start, end) => ApiService.put(`/holidays/${id}`, {start: start, end: end}),
+
         getLatestSupplierAgreement: () => ApiService.get(`/supplier-agreement`),
 
         getAllSupplierAgreements: () => ApiService.get(`/supplier-agreements`),
