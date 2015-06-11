@@ -44,6 +44,8 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService) {
 
         getOrderMessages: (id) => ApiService.get(`/orders/${id}/messages`),
 
+        getOrdersWithMessages: () => ApiService.get(`/orders/with-messages`),
+
         getOrderReviews: (id) => ApiService.get(`/reviews/order/${id}`),
 
         sendMessage: (id, message) => ApiService.put(`/orders/${id}/messages`, {message: message}),
@@ -53,6 +55,8 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService) {
         deleteOrder: (id, reason = '') => ApiService.delete(`/order/${id}?deletionReason=${reason}`),
 
         getCourierOrders: () => ApiService.get(`/orders/courier`),
+
+        setDeliveryStatus: (id, statusDetails) => ApiService.put('/order/${id}/delivery-status', statusDetails),
 
         addCustomerServiceEvent: (id, event) => ApiService.post(`/order/${id}/customer-service-events`, {event: event}),
 
