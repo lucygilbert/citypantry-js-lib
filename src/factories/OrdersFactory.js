@@ -56,7 +56,7 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService) {
 
         getCourierOrders: () => ApiService.get(`/orders/courier`),
 
-        setDeliveryStatus: (id, statusDetails) => ApiService.put('/order/${id}/delivery-status', statusDetails),
+        setDeliveryStatus: (id, statusDetails) => ApiService.put(`/order/${id}/delivery-status`, statusDetails),
 
         addCustomerServiceEvent: (id, event) => ApiService.post(`/order/${id}/customer-service-events`, {event: event}),
 
