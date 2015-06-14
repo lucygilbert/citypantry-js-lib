@@ -1,4 +1,4 @@
-angular.module('cpLib').factory('OrdersFactory', function(ApiService) {
+angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliveryStatusTextFilter) {
     // Cache of Date objects, to avoid having to create a new Date object many times when running
     // an array filter or sort.
     const dateObjectCache = {};
@@ -93,6 +93,10 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService) {
 
         getOrderInvoices: (orderId) => ApiService.get(`/orders/customer-invoices-by-order/${orderId}`),
 
-        createOrder: orderDetails => ApiService.post(`/orders`, orderDetails)
+        createOrder: orderDetails => ApiService.post(`/orders`, orderDetails),
+
+        getDeliveryStatusOptions: () => {
+            return [1, 2, 3, 4].map(value => ({ value, label: getDeliveryStatusTextFilter(value) }));
+        }
     };
 });
