@@ -48,4 +48,16 @@ describe('OrdersFactory', function () {
             $httpBackend.verifyNoOutstandingExpectation();
         });
     });
+
+    describe('getDeliveryStatusOptions', function() {
+        it('should return all options', function() {
+            var result = OrdersFactory.getDeliveryStatusOptions();
+            expect(result.length).toBe(4);
+        });
+
+        it('should return a label for each option', function() {
+            var result = OrdersFactory.getDeliveryStatusOptions();
+            expect(result.pop().label).toEqual('Delivered');
+        });
+    });
 });
