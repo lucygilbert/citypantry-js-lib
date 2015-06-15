@@ -97,6 +97,8 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
 
         getDeliveryStatusOptions: () => {
             return [1, 2, 3, 4].map(value => ({ value, label: getDeliveryStatusTextFilter(value) }));
-        }
+        },
+
+        createOrdersCsvFile: orderIds => ApiService.post(`/orders/create-csv`, orderIds)
     };
 });
