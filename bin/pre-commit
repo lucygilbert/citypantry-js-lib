@@ -16,3 +16,20 @@ if [ $? -ne 0 ];
 then
     exit 1
 fi
+
+# We keep forgetting to increment the version number in package.json, so ensure that it is changed!
+git diff HEAD --name-only | grep '^package\.json$' > /dev/null
+if [ $? -ne 0 ];
+then
+    echo 'package.json has not changed -- should the version number have been incremented?'
+    exit 1
+fi
+
+git diff HEAD -- package.json | grep '+  "version":' > /dev/null
+if [ $? -ne 0 ];
+then
+    echo 'package.json version has not changed -- should the version number have been incremented?'
+    exit 1
+fi
+
+echo 'Pre-commit hook is fine.'
