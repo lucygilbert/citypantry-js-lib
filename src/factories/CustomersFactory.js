@@ -1,4 +1,4 @@
-angular.module('cpLib').factory('CustomersFactory', function(ApiService, $q) {
+angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCustomerPersonaTextFilter) {
     return {
         getAllCustomers: () => ApiService.get(`/customers`),
 
@@ -32,6 +32,11 @@ angular.module('cpLib').factory('CustomersFactory', function(ApiService, $q) {
 
         setUpRequestToPayOnAccount: (id, payOnAccountDetails) => ApiService.put(`/customers/${id}/set-up-request-to-pay-on-account`, payOnAccountDetails),
 
-        revokePaymentOnAccount: (id) => ApiService.put(`/customers/${id}/revoke-payment-on-account`)
+        revokePaymentOnAccount: (id) => ApiService.put(`/customers/${id}/revoke-payment-on-account`),
+
+        getPersonaOptions() {
+            return [1, 2, 3, 4, 5, 6, 7]
+                .map(value => ({ value, label: getCustomerPersonaTextFilter(value) }));
+        }
     };
 });
