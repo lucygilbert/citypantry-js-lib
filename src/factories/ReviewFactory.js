@@ -4,6 +4,8 @@ angular.module('cpLib').factory('ReviewFactory', function(ApiService) {
 
         getRecentReviews: () => ApiService.get(`/reviews/recent-by-current-vendor`),
 
-        getReview: (reviewId) => ApiService.get(`/reviews/${reviewId}`)
+        getReview: (reviewId) => ApiService.get(`/reviews/${reviewId}`),
+
+        getAllReviews: () => ApiService.get(`/reviews`)
     };
 });
