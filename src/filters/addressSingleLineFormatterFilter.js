@@ -5,7 +5,7 @@ angular.module('cpLib').filter('addressSingleLineFormatter', function($sce) {
         }
 
         function safe(input) {
-            return input.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return input ? input.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
         }
 
         return $sce.trustAsHtml(safe(address.addressLine1) +
