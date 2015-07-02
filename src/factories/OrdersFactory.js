@@ -101,6 +101,8 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
 
         createOrdersCsvFile: orderIds => ApiService.post(`/orders/create-csv`, {orderIds: orderIds}),
 
-        getCustomerTeamOrders: customerId => ApiService.get(`/orders/customer/${customerId}/team-orders`)
+        getCustomerTeamOrders: customerId => ApiService.get(`/orders/customer/${customerId}/team-orders`),
+
+        getCustomerTeamOrder: (customerId, orderId) => ApiService.get(`/orders/customer/${customerId}/team-orders/${orderId}`)
     };
 });
