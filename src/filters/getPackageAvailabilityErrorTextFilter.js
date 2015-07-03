@@ -12,6 +12,8 @@ angular.module('cpLib').filter('getPackageAvailabilityErrorText', function() {
             return 'The vendor needs more notice to deliver at this time.';
         } else if (availability.isVendorOnHoliday) {
             return 'The vendor is on holiday on that date.';
+        } else if (availability.isMinimumPriceMet) {
+            return 'You have not met the minimum order value of £50.';
         } else {
             throw new Error('Unknown error: isPostcodeOk: ' + availability.isPostcodeOk +
                 ', isVendorDailyCapacityExceeded: ' + availability.isVendorDailyCapacityExceeded +

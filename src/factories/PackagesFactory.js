@@ -196,7 +196,7 @@ angular.module('cpLib').factory('PackagesFactory',
 
         checkIfPackageCanBeDeliveredToPostcode: (id, postcode) => ApiService.get(`/packages/${id}/availability?postcode=${postcode}`),
 
-        checkIfPackageCanBeDelivered: (id, date, time, postcode) => ApiService.get(`/packages/${id}/availability?date=${date}&time=${time}&postcode=${postcode}`),
+        checkIfPackageCanBeDelivered: (id, date, time, postcode, headCount) => ApiService.get(`/packages/${id}/availability?date=${date}&time=${time}&postcode=${postcode}&headCount=${headCount}`),
 
         getRecommendedPackage: () => ApiService.get(`/packages/one-recommended`),
 
