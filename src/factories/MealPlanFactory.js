@@ -33,6 +33,8 @@ angular.module('cpLib').factory('MealPlanFactory', function (ApiService) {
 
         editProposedOrder: (customerId, mealPlanId, orderDetails) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/edit-proposed-order`, orderDetails),
 
-        getPossiblePackages: (customerId, mealPlanId) => ApiService.get(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/possible-packages`)
+        getPossiblePackages: (customerId, mealPlanId) => ApiService.get(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/possible-packages`),
+
+        getPossiblePackagesForRequestedDeliveryDateAction: (customerId, mealPlanId, requestedDeliveryDate) => ApiService.get(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/possible-packages/${requestedDeliveryDate}`)
     };
 });
