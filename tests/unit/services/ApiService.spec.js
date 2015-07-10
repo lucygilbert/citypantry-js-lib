@@ -22,6 +22,24 @@ describe('ApiService', function () {
         });
     });
 
+    describe('getExtraHeaders', function() {
+        it('should return the extra headers set by ApiAuthService', function() {
+            expect(ApiService.getExtraHeaders()).toEqual({
+                'X-CityPantry-DefaultExtraHeader': 'something'
+            });
+        });
+    });
+
+    describe('getAllHeaders', function() {
+        it('should return the authentication and extra headers set by ApiAuthService', function() {
+            expect(ApiService.getAllHeaders()).toEqual({
+                'X-CityPantry-UserId': 'abc123',
+                'X-CityPantry-AuthToken': 'zzzzzz',
+                'X-CityPantry-DefaultExtraHeader': 'something'
+            });
+        });
+    });
+
     describe('get', function() {
         it('should prepend the URL with the correct base URL', function() {
             $httpBackend.expectGET('http://api-base/example').respond();

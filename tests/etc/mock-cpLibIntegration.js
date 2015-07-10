@@ -7,6 +7,12 @@ angular.module('cpLibIntegration', [])
                     userId: 'abc123',
                     authToken: 'zzzzzz'
                 };
+            },
+
+            getExtraHeaders: function() {
+                return {
+                    'X-CityPantry-DefaultExtraHeader': 'something'
+                };
             }
         };
     });

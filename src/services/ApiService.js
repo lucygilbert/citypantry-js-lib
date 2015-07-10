@@ -17,41 +17,58 @@ angular.module('cpLib').service('ApiService', function($http, ApiAuthService, AP
         }
     }
 
-    function addAuthHeaders(config = {}) {
+    function getExtraHeaders() {
+        if (typeof ApiAuthService.getExtraHeaders === 'function') {
+            return ApiAuthService.getExtraHeaders();
+        } else {
+            return {};
+        }
+    }
+
+    function addApiHeaders(config = {}) {
         config.headers = config.headers || {};
 
         angular.extend(config.headers, getAuthHeaders());
+        angular.extend(config.headers, getExtraHeaders());
 
         return config;
     }
 
     return {
         get: function(url, config) {
-            config = addAuthHeaders(config);
+            config = addApiHeaders(config);
 
             return $http.get(API_BASE + url, config);
         },
 
         post: function(url, data, config) {
-            config = addAuthHeaders(config);
+            config = addApiHeaders(config);
 
             return $http.post(API_BASE + url, data, config);
         },
 
         put: function(url, data, config) {
-            config = addAuthHeaders(config);
+            config = addApiHeaders(config);
 
             return $http.put(API_BASE + url, data, config);
         },
 
         'delete': function(url, config) {
-            config = addAuthHeaders(config);
+            config = addApiHeaders(config);
 
             return $http.delete(API_BASE + url, config);
         },
 
         getAuthHeaders: function() {
             return getAuthHeaders();
+        },
+
+        getExtraHeaders: function() {
+            return getExtraHeaders();
+        },
+
+        getAllHeaders: function() {
+            return angular.extend({}, this.getAuthHeaders(), this.getExtraHeaders());
         }
     };
 });
