@@ -22,6 +22,24 @@ describe('ApiService', function () {
         });
     });
 
+    describe('getExtraHeaders', function() {
+        it('should return the extra headers set by ApiAuthService', function() {
+            expect(ApiService.getExtraHeaders()).toEqual({
+                'X-CityPantry-DefaultExtraHeader': 'something'
+            });
+        });
+    });
+
+    describe('getAllHeaders', function() {
+        it('should return the authentication and extra headers set by ApiAuthService', function() {
+            expect(ApiService.getAllHeaders()).toEqual({
+                'X-CityPantry-UserId': 'abc123',
+                'X-CityPantry-AuthToken': 'zzzzzz',
+                'X-CityPantry-DefaultExtraHeader': 'something'
+            });
+        });
+    });
+
     describe('get', function() {
         it('should prepend the URL with the correct base URL', function() {
             $httpBackend.expectGET('http://api-base/example').respond();
@@ -31,7 +49,7 @@ describe('ApiService', function () {
             $httpBackend.verifyNoOutstandingExpectation();
         });
 
-        it('should use apply the authentication headers', function() {
+        it('should apply the authentication headers', function() {
             $httpBackend.expectGET('http://api-base/example', function(headers) {
                 expect(headers['X-CityPantry-UserId']).toBe('abc123');
                 expect(headers['X-CityPantry-AuthToken']).toBe('zzzzzz');
@@ -39,6 +57,19 @@ describe('ApiService', function () {
             }).respond();
 
             ApiService.get('/example');
+
+            $httpBackend.verifyNoOutstandingExpectation();
+        });
+
+        it('should preserver existing headers', function() {
+            $httpBackend.expectGET('http://api-base/example', function(headers) {
+                expect(headers['X-CityPantry-SomeExtraHeader']).toBe('abc');
+                expect(headers['X-CityPantry-UserId']).toBe('abc123');
+                expect(headers['X-CityPantry-AuthToken']).toBe('zzzzzz');
+                return true;
+            }).respond();
+
+            ApiService.get('/example', {headers: {'X-CityPantry-SomeExtraHeader': 'abc'}});
 
             $httpBackend.verifyNoOutstandingExpectation();
         });
