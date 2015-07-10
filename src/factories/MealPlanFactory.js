@@ -27,6 +27,14 @@ angular.module('cpLib').factory('MealPlanFactory', function (ApiService) {
          */
         replaceWithUnusedAlternativePackage: (customerId, mealPlanId, date) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/replace-with-unused-alternative-package`, date),
 
+        /**
+         * @param  {String} customerId
+         * @param  {String} mealPlanId
+         * @param  {String} packageId
+         * @param  {String} date       An ISO-8601 string.
+         */
+        replaceWithSpecificPackage: (customerId, mealPlanId, packageId, date) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/replace-with-specific-package`, {packageId, date}),
+
         sendToCustomer: (customerId, mealPlanId) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/send-to-customer`),
 
         confirmProposedOrders: (customerId, mealPlanId, attributes) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/confirm-proposed-orders`, attributes),
