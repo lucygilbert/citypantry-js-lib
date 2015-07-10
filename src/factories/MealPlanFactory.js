@@ -31,6 +31,8 @@ angular.module('cpLib').factory('MealPlanFactory', function (ApiService) {
 
         confirmProposedOrders: (customerId, mealPlanId, attributes) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/confirm-proposed-orders`, attributes),
 
-        editProposedOrder: (customerId, mealPlanId, orderDetails) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/edit-proposed-order`, orderDetails)
+        editProposedOrder: (customerId, mealPlanId, orderDetails) => ApiService.post(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/edit-proposed-order`, orderDetails),
+
+        getPossiblePackages: (customerId, mealPlanId) => ApiService.get(`/meal-plan/customers/${customerId}/meal-plans/${mealPlanId}/possible-packages`)
     };
 });
