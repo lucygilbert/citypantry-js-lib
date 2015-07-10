@@ -1,8 +1,26 @@
 angular.module('cpLib').service('ApiService', function($http, ApiAuthService, API_BASE) {
+    function getAuthHeaders() {
+        if (typeof ApiAuthService === 'function') {
+            // This is for backwards compatability with clients using version 1.0.81 or earlier.
+            return {
+                'X-CityPantry-UserId': ApiAuthService().userId,
+                'X-CityPantry-AuthToken': ApiAuthService().authToken,
+            };
+        } else if (typeof ApiAuthService.getAuthHeaders === 'function') {
+            // This is for clients using version 1.0.82 or newer.
+            return {
+                'X-CityPantry-UserId': ApiAuthService.getAuthHeaders().userId,
+                'X-CityPantry-AuthToken': ApiAuthService.getAuthHeaders().authToken,
+            };
+        } else {
+            return {};
+        }
+    }
+
     function addAuthHeaders(config = {}) {
         config.headers = config.headers || {};
-        config.headers['X-CityPantry-UserId'] = ApiAuthService().userId;
-        config.headers['X-CityPantry-AuthToken'] = ApiAuthService().authToken;
+
+        angular.extend(config.headers, getAuthHeaders());
 
         return config;
     }
@@ -33,10 +51,7 @@ angular.module('cpLib').service('ApiService', function($http, ApiAuthService, AP
         },
 
         getAuthHeaders: function() {
-            return {
-                'X-CityPantry-UserId': ApiAuthService().userId,
-                'X-CityPantry-AuthToken': ApiAuthService().authToken,
-            };
+            return getAuthHeaders();
         }
     };
 });
