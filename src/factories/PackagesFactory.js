@@ -82,13 +82,10 @@ angular.module('cpLib').factory('PackagesFactory',
         /**
          * Gets an array of possible notice options for a package.
          *
-         * If the package is a meal plan package, there is a maximum notice.
-         *
-         * @param  {Boolean} isForMealPlanPackage
          * @return {Array}
          */
-        getNoticeOptions: (isForMealPlanPackage = false) => {
-            const allNoticeOptions = [
+        getNoticeOptions: () => {
+            return [
                 { label: '1 hour',   value: 1 },
                 { label: '2 hours',  value: 2 },
                 { label: '3 hours',  value: 3 },
@@ -107,12 +104,6 @@ angular.module('cpLib').factory('PackagesFactory',
                 { label: '7 days',   value: 168 },
                 { label: '14 days',  value: 336 }
             ];
-
-            if (isForMealPlanPackage) {
-                return allNoticeOptions.slice(0, 9);
-            } else {
-                return allNoticeOptions;
-            }
         },
 
         getQuantityOptions: () => {

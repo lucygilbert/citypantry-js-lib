@@ -75,10 +75,5 @@ describe('PackagesFactory', function () {
             var result = PackagesFactory.getNoticeOptions();
             expect(result.pop().label).toEqual('14 days');
         });
-
-        it('should return capped notice options if the options are for a meal plan package', function() {
-            var result = PackagesFactory.getNoticeOptions(true);
-            expect(result.pop().label).toEqual('24 hours');
-        });
     });
 });
