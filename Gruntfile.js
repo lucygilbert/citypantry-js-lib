@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                     'dist/lib-es6.js': [
                         'src/module.js',
                         'src/factories/*.js',
-                        'src/filters/*.js',
+                        'src/filters/**/*.js',
                         'src/services/*.js',
                     ],
                     'dist/lib-es5-without-browser-polyfill.js': [
