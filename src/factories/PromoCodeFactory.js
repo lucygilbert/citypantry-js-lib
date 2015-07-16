@@ -1,5 +1,9 @@
 angular.module('cpLib').factory('PromoCodeFactory', function(ApiService) {
     return {
-        getPromoCodeByCode: code => ApiService.get(`/promo-codes/get-by-code?code=${code}`)
+        getPromoCodeByCode: code => ApiService.get(`/promo-codes/get-by-code?code=${code}`),
+
+        getAllPromoCodes: () => ApiService.get(`/promo-codes`),
+
+        createPromoCode: (data) => ApiService.post(`/promo-codes`, data)
     };
 });
