@@ -1,4 +1,5 @@
-angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCustomerPersonaTextFilter) {
+angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCustomerPersonaTextFilter,
+        getCustomerSalesStaffTypeTextFilter) {
     return {
         getAllCustomers: () => ApiService.get(`/customers`),
 
@@ -37,6 +38,11 @@ angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCust
         getPersonaOptions() {
             return [1, 2, 3, 4, 5, 6, 7]
                 .map(value => ({ value, label: getCustomerPersonaTextFilter(value) }));
+        },
+
+        getSalesStaffTypeOptions() {
+            return [1, 2, 3]
+                .map(value => ({ value, label: getCustomerSalesStaffTypeTextFilter(value) }));
         }
     };
 });
