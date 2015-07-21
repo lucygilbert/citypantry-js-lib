@@ -7,6 +7,8 @@ angular.module('cpLib').filter('getPaymentTermText', function() {
                 return 'Paid by card at the time of order';
             case 3:
                 return 'Paid by card at the time of delivery';
+            case 4:
+                return 'Free';
             default:
                 throw 'Unexpected payment term: ' + paymentTerm;
         }
