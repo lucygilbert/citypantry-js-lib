@@ -1,4 +1,4 @@
-angular.module('cpLib').factory('VendorsFactory', function(ApiService, $q) {
+angular.module('cpLib').factory('VendorsFactory', function(ApiService) {
     return {
         getAllVendors: () => ApiService.get(`/vendors`),
 
