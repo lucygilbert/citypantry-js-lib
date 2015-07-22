@@ -1,4 +1,4 @@
-angular.module('cpLib').factory('UsersFactory', function(ApiService) {
+angular.module('cpLib').factory('UsersFactory', function(ApiService, $window) {
     return {
         getAllUsers: () => ApiService.get(`/users`),
 
@@ -14,6 +14,13 @@ angular.module('cpLib').factory('UsersFactory', function(ApiService) {
 
         getPaymentCards: () => ApiService.get(`/payment-cards`),
 
-        addPaymentCard: (cardDetails) => ApiService.post(`/payment-cards`, cardDetails)
+        addPaymentCard: (cardDetails) => ApiService.post(`/payment-cards`, cardDetails),
+
+        isEmailInUse: (email) => {
+            const escapedEmail = $window.encodeURIComponent(email);
+
+            return ApiService.get(`/users/is-email-in-use?email=${escapedEmail}`)
+                .then(response => response.isInUse);
+        }
     };
 });
