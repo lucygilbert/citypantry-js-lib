@@ -2,6 +2,8 @@ angular.module('cpLib').factory('UsersFactory', function(ApiService, $window) {
     return {
         getAllUsers: () => ApiService.get(`/users`),
 
+        getUser: (userId) => ApiService.get(`/users/${userId}`),
+
         getStaffEmailById: staffId => ApiService.get(`/users/${staffId}/get-staff-email`),
 
         masqueradeAsUser: id => ApiService.post(`/user/masquerade`, {id: id}),
