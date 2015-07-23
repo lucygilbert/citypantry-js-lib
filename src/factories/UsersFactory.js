@@ -22,7 +22,7 @@ angular.module('cpLib').factory('UsersFactory', function(ApiService, $window) {
             const escapedEmail = $window.encodeURIComponent(email);
 
             return ApiService.get(`/users/is-email-in-use?email=${escapedEmail}`)
-                .then(response => response.isInUse);
+                .then(response => response.data.isInUse);
         }
     };
 });
