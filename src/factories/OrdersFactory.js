@@ -99,7 +99,12 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
             return [1, 2, 3, 4].map(value => ({ value, label: getDeliveryStatusTextFilter(value) }));
         },
 
-        createOrdersCsvFile: orderIds => ApiService.post(`/orders/create-csv`, {orderIds: orderIds}),
+        createOrdersCsvFile(orderIds, fields) {
+            return ApiService.post(`/orders/create-csv`, {
+                orderIds: orderIds,
+                fields: fields
+            });
+        },
 
         getCustomerTeamOrders: customerId => ApiService.get(`/orders/customer/${customerId}/team-orders`),
 
