@@ -14,6 +14,8 @@ angular.module('cpLib').factory('UsersFactory', function(ApiService, $window) {
 
         changeOwnPassword: passwords => ApiService.put(`/user/self/change-password`, passwords),
 
+        changeUserPassword: (userId) => ApiService.put(`/users/${userId}/change-password`),
+
         getPaymentCards: () => ApiService.get(`/payment-cards`),
 
         addPaymentCard: (cardDetails) => ApiService.post(`/payment-cards`, cardDetails),
