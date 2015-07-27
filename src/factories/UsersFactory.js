@@ -20,6 +20,8 @@ angular.module('cpLib').factory('UsersFactory', function(ApiService, $window) {
 
         addPaymentCard: (cardDetails) => ApiService.post(`/payment-cards`, cardDetails),
 
+        deletePaymentCard: (cardId) => ApiService.delete(`/payment-cards/${cardId}`),
+
         isEmailInUse: (email) => {
             const escapedEmail = $window.encodeURIComponent(email);
 
