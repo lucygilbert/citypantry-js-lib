@@ -1,5 +1,5 @@
 angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCustomerPersonaTextFilter,
-        getCustomerSalesStaffTypeTextFilter) {
+        getCustomerSalesStaffTypeTextFilter, getCustomerPayOnAccountInvoiceRecipientTextFilter) {
     return {
         getAllCustomers: () => ApiService.get(`/customers`),
 
@@ -41,6 +41,11 @@ angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCust
         getSalesStaffTypeOptions() {
             return [1, 2, 3]
                 .map(value => ({ value, label: getCustomerSalesStaffTypeTextFilter(value) }));
+        },
+
+        getPayOnAccountInvoiceRecipientOptions() {
+            return [1, 2]
+                .map(value => ({ value, label: getCustomerPayOnAccountInvoiceRecipientTextFilter(value) }));
         }
     };
 });

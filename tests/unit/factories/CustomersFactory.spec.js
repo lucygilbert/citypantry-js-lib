@@ -29,9 +29,21 @@ describe('CustomersFactory', function () {
             expect(result.length).toBe(3);
         });
 
-        it('should return a translated label for each persona', function() {
+        it('should return a translated label for each sales staff type', function() {
             var result = CustomersFactory.getSalesStaffTypeOptions();
             expect(result[0].label).toEqual('Premium, one-off');
+        });
+    });
+
+    describe('getPayOnAccountInvoiceRecipientOptions', function() {
+        it('should return all options', function() {
+            var result = CustomersFactory.getPayOnAccountInvoiceRecipientOptions();
+            expect(result.length).toBe(2);
+        });
+
+        it('should return a translated label for each recipient option', function() {
+            var result = CustomersFactory.getPayOnAccountInvoiceRecipientOptions();
+            expect(result[0].label).toEqual('Customer and City Pantry accounts');
         });
     });
 });
