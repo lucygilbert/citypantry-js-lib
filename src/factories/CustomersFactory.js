@@ -1,5 +1,6 @@
 angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCustomerPersonaTextFilter,
-        getCustomerSalesStaffTypeTextFilter, getCustomerPayOnAccountInvoiceRecipientTextFilter) {
+        getCustomerSalesStaffTypeTextFilter, getCustomerPayOnAccountInvoiceRecipientTextFilter,
+        AddressFactory) {
     return {
         getAllCustomers: () => ApiService.get(`/customers`),
 
@@ -11,20 +12,14 @@ angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCust
 
         getAddresses: () => ApiService.get(`/addresses`),
 
-        getAddressById: id => {
-            const pluckMatchingAddress = response => {
-                const allAddresses = response.data.addresses,
-                    allIds = allAddresses.map(address => address.id),
-                    address = allAddresses[allIds.indexOf(id)];
+        getDeliveryAddressById: id => {
+            return ApiService.get(`/addresses`)
+                .then(response => AddressFactory.pluckAddressFromArray(id, response.data.deliveryAddresses));
+        },
 
-                if (address) {
-                    return address;
-                } else {
-                    throw 'Couldn’t find address';
-                }
-            };
-
-            return ApiService.get(`/addresses`).then(pluckMatchingAddress);
+        getBillingAddressById: id => {
+            return ApiService.get(`/addresses`)
+                .then(response => AddressFactory.pluckAddressFromArray(id, response.data.billingAddresses));
         },
 
         getCustomerReviews: (id) => ApiService.get(`/reviews/customer/${id}`),

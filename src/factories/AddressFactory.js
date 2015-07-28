@@ -12,6 +12,17 @@ angular.module('cpLib').factory('AddressFactory', function(ApiService) {
 
         deleteAddress: (id) => ApiService.delete(`/addresses/${id}`),
 
-        createBillingAddress: (address, customerId = '') => ApiService.post(`/addresses/billing-address`, {address: address, customerId: customerId})
+        createBillingAddress: (address, customerId = '') => ApiService.post(`/addresses/billing-address`, {address: address, customerId: customerId}),
+
+        pluckAddressFromArray(addressId, addresses) {
+            const allIds = addresses.map(address => address.id),
+                address = addresses[allIds.indexOf(addressId)];
+
+            if (address) {
+                return address;
+            } else {
+                throw 'Couldn’t find address';
+            }
+        }
     };
 });

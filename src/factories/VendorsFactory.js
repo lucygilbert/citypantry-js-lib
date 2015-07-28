@@ -1,4 +1,4 @@
-angular.module('cpLib').factory('VendorsFactory', function(ApiService) {
+angular.module('cpLib').factory('VendorsFactory', function(ApiService, AddressFactory) {
     return {
         getAllVendors: () => ApiService.get(`/vendors`),
 
@@ -9,19 +9,8 @@ angular.module('cpLib').factory('VendorsFactory', function(ApiService) {
         getAddresses: () => ApiService.get(`/addresses`),
 
         getAddressById: id => {
-            const pluckMatchingAddress = response => {
-                const allAddresses = response.data.addresses,
-                    allIds = allAddresses.map(address => address.id),
-                    address = allAddresses[allIds.indexOf(id)];
-
-                if (address) {
-                    return address;
-                } else {
-                    throw 'Couldn’t find address';
-                }
-            };
-
-            return ApiService.get(`/addresses`).then(pluckMatchingAddress);
+            return ApiService.get(`/addresses`)
+                .then(response => AddressFactory.pluckAddressFromArray(id, response.data.addresses));
         },
 
         getBusinessTypes: () => ApiService.get(`/business-types`),
