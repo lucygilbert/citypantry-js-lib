@@ -41,6 +41,13 @@ angular.module('cpLib').factory('CustomersFactory', function(ApiService, getCust
         getPayOnAccountInvoiceRecipientOptions() {
             return [1, 2]
                 .map(value => ({ value, label: getCustomerPayOnAccountInvoiceRecipientTextFilter(value) }));
+        },
+
+        createCustomersCsvFile(customerIds, fields) {
+            return ApiService.post(`/customers/create-csv`, {
+                customerIds: customerIds,
+                fields: fields
+            });
         }
     };
 });
