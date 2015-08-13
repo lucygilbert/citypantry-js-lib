@@ -17,8 +17,12 @@ describe('slugify filter', function() {
         expect(slugifyFilter('/')).toEqual('-');
     }));
 
+    it('should remove percent signs because Chrome errors on those followed by a space', inject(function(slugifyFilter) {
+        expect(slugifyFilter('100% Buffalo burgers. 100% meaner leaner sweeter')).toEqual('100-buffalo-burgers-100-meaner-leaner-sweeter');
+    }));
+
     it('should slugify real package names to an appropriate slug', inject(function(slugifyFilter) {
         expect(slugifyFilter('The Fat Controller Vs 3:10 to Yuma (w/ FRIES) - 12Hr. Beef Rib & 10Hr. Pulled Pork.'))
-            .toEqual('the-fat-controller-vs-3:10-to-yuma-(w-fries)-12hr.-beef-rib-&-10hr.-pulled-pork');
+            .toEqual('the-fat-controller-vs-3:10-to-yuma-(w-fries)-12hr-beef-rib-&-10hr-pulled-pork');
     }));
 });
