@@ -60,4 +60,26 @@ describe('OrdersFactory', function () {
             expect(result.pop().label).toEqual('Delivered');
         });
     });
+
+    describe('markCustomerInvoiceAsAwaitingPayment', function() {
+        it('should call the API with the correct status', function() {
+            $httpBackend.expectPUT('http://api-base/orders/customer-invoice/159/status', {status: 1})
+                .respond(200);
+
+            OrdersFactory.markCustomerInvoiceAsAwaitingPayment(159);
+
+            $httpBackend.verifyNoOutstandingExpectation();
+        });
+    });
+
+    describe('markCustomerInvoiceAsPaid)', function() {
+        it('should call the API with the correct status', function() {
+            $httpBackend.expectPUT('http://api-base/orders/customer-invoice/159/status', {status: 2})
+                .respond(200);
+
+            OrdersFactory.markCustomerInvoiceAsPaid(159);
+
+            $httpBackend.verifyNoOutstandingExpectation();
+        });
+    });
 });

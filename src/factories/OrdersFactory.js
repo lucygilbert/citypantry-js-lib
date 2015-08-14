@@ -11,7 +11,7 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
         return dateObjectCache[date];
     };
 
-    return {
+    const service = {
         getAllOrders: () => ApiService.get(`/orders`),
 
         getOrdersByCurrentVendor: () => ApiService.get(`/orders/by-current-vendor`),
@@ -89,6 +89,10 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
 
         updateCustomerInvoiceStatus: (id, status) => ApiService.put(`/orders/customer-invoice/${id}/status`, {status: status}),
 
+        markCustomerInvoiceAsPaid: (id) => service.updateCustomerInvoiceStatus(id, 2),
+
+        markCustomerInvoiceAsAwaitingPayment: (id) => service.updateCustomerInvoiceStatus(id, 1),
+
         refundOrder: (id, refundDetails) => ApiService.put(`/order/${id}/refund`, refundDetails),
 
         getOrderInvoices: (orderId) => ApiService.get(`/orders/customer-invoices-by-order/${orderId}`),
@@ -110,4 +114,6 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
 
         getCustomerTeamOrder: (customerId, orderId) => ApiService.get(`/orders/customer/${customerId}/team-orders/${orderId}`)
     };
+
+    return service;
 });
