@@ -93,6 +93,8 @@ angular.module('cpLib').factory('OrdersFactory', function(ApiService, getDeliver
 
         markCustomerInvoiceAsAwaitingPayment: (id) => service.updateCustomerInvoiceStatus(id, 1),
 
+        reissueCustomerInvoice: (id) => ApiService.put(`/orders/customer-invoice/${id}/reissue`),
+
         refundOrder: (id, refundDetails) => ApiService.put(`/order/${id}/refund`, refundDetails),
 
         getOrderInvoices: (orderId) => ApiService.get(`/orders/customer-invoices-by-order/${orderId}`),
