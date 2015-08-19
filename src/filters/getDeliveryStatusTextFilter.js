@@ -9,6 +9,8 @@ angular.module('cpLib').filter('getDeliveryStatusText', function() {
                 return 'Late > 15 mins - call';
             case 4:
                 return 'Delivered';
+            case 5:
+                return 'On track';
             default:
                 return 'Unknown';
         }
